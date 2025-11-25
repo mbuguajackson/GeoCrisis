@@ -81,14 +81,19 @@ WSGI_APPLICATION = 'geocrisis.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+from dotenv import load_dotenv
+
+load_dotenv(os.path.join(BASE_DIR,'.env'))
+
+# Database
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'geocrisis',
-        'USER': 'geocrisis_admin',
-        'PASSWORD': 'admin1234',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
+        'HOST': os.getenv('DB_HOST'),
+        'PORT': os.getenv('DB_PORT'),
     }
 }
 
