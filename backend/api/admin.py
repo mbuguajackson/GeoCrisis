@@ -47,4 +47,4 @@ class KenyaConflictDataAdmin(OSMGeoAdmin):
         
     # Disable the ability to delete records since we're using managed=False
     def has_delete_permission(self, request, obj=None):
-        return True
+        return False
