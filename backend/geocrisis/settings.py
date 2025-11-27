@@ -20,7 +20,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 import os
 GDAL_LIBRARY_PATH = r'C:\OSGeo4W\bin\gdal309.dll'
 
-
+# Add these new lines
+os.environ['PROJ_LIB'] = r'C:\OSGeo4W\share\proj'
+os.environ['GDAL_DATA'] = r'C:\OSGeo4W\share\gdal'
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
@@ -42,9 +44,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
-    'api',
     'django.contrib.gis',
+    'rest_framework',
+    'rest_framework_gis',
+    'django_filters',
+    'api'
+    
 ]
 
 MIDDLEWARE = [
@@ -140,3 +145,21 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ],
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 20
+}
+
+# REST_FRAMEWORK = {
+#     'DEFAULT_RENDERER_CLASSES': [
+#         'rest_framework.renderers.JSONRenderer',
+#     ],
+#     # ... your existing REST_FRAMEWORK settings ...
+# }

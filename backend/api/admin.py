@@ -1,9 +1,9 @@
-from django.contrib import admin
-from django.contrib.gis.admin import OSMGeoAdmin
+#from django.contrib import admin
+from django.contrib.gis import admin
 from .models import KenyaConflictData
 
 @admin.register(KenyaConflictData)
-class KenyaConflictDataAdmin(OSMGeoAdmin):
+class KenyaConflictDataAdmin(admin.GISModelAdmin):
     # Fields to display in the list view
     list_display = ('event_type', 'event_date', 'location', 'fatalities', 'country')
     
